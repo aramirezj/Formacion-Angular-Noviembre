@@ -1,0 +1,12 @@
+
+
+
+<button (click)="cambiarModo('Comprar') " mat-raised-button color="primary">Comprar</button>
+<button (click)="cambiarModo('Consultar') " mat-raised-button color="accent">Consultar</button>
+
+<p>Modo actual: {{modoElegido}}</p>
+
+<div *ngIf="modoElegido === 'Comprar' ">
+    <p>Carrito: 0 unidades</p>
+    <p>Precio total: 0€</p>
+</div>

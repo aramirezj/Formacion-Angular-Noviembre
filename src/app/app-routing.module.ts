@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CrearLibroComponent } from './crear-libro/crear-libro.component';
 import { ExpositorComponent } from './expositor/expositor.component';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-    {path:'expositor',component:ExpositorComponent}
+    { path: 'expositor', component: ExpositorComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'creacionLibro', component: CrearLibroComponent,
+     canActivate: [AuthGuard] }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,2 +1,25 @@
-<h1>Hola mundodawdawdad</h1>
-<router-outlet></router-outlet>
+<!-- Barra de navegación -->
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Mi libreria</span>
+    <span class="example-spacer"></span>
+</mat-toolbar>
+
+
+<!-- Contenido de la web -->
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <div class="elementoBarra" [routerLink]="['login']"> Inicio de sesión</div>
+        <div class="elementoBarra" [routerLink]="['expositor']"> Expositor de libros</div>
+        <div class="elementoBarra" [routerLink]="['creacionLibro']"> Creación de libros</div>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <!-- Resultado del enrutamiento -->
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-drawer-container>
+

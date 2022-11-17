@@ -1,0 +1,27 @@
+<form [formGroup]="formularioCreacion">
+    <mat-form-field appearance="fill">
+        <mat-label>Titulo:</mat-label>
+        <input formControlName="titulo" matInput>
+        <mat-error *ngIf="formularioCreacion.get('titulo').hasError('required')">El campo es obligatorio</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Autor:</mat-label>
+        <input formControlName="autor" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Precio:</mat-label>
+        <input formControlName="precio" matInput>
+        <mat-error *ngIf="formularioCreacion.get('precio').hasError('required')">El campo es obligatorio</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Cantidad de páginas:</mat-label>
+        <input formControlName="cantidadPaginas" matInput>
+        <mat-error *ngIf="formularioCreacion.get('cantidadPaginas').hasError('required')">El campo es obligatorio</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" (click)="formularioCreacion.reset()">Reiniciar</button>
+</form>
+
+<button mat-raised-button color="primary" (click)="crearLibro()" [disabled]="formularioCreacion.invalid">Crear libro</button>
+
+

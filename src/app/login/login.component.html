@@ -1,0 +1,28 @@
+<p>Sesión iniciada: {{sesionIniciada}}</p>
+
+
+<form [formGroup]="formularioLogin">
+    <mat-form-field appearance="fill">
+        <mat-label>Email:</mat-label>
+        <input formControlName="email" matInput>
+        <mat-error *ngIf="formularioLogin.get('email').hasError('required')">El campo es obligatorio</mat-error>
+        <mat-error *ngIf="formularioLogin.get('email').hasError('minlength')">La longitud mínima es 5 caracteres
+        </mat-error>
+        <mat-error *ngIf="formularioLogin.get('email').hasError('email')">El formato no es correcto</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Password:</mat-label>
+        <input formControlName="password" matInput type="password">
+        <mat-error *ngIf="formularioLogin.get('password').hasError('required')">El campo es obligatorio</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="formularioLogin.reset()">Reiniciar</button>
+</form>
+
+<pre>
+    {{formularioLogin.value | json }}
+</pre>
+
+
+<button mat-raised-button color="primary" (click)="iniciarSesion()" [disabled]="formularioLogin.invalid">Iniciar
+    sesión</button>
+<button mat-raised-button color="warn" (click)="cerrarSesion()">Cerrar sesión</button>

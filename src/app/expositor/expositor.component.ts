@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Libro } from '../interfaces/Libro';
+import { LibroService } from '../services/libro.service';
 
 @Component({
     selector: 'app-expositor',
@@ -15,29 +17,78 @@ export class ExpositorComponent implements OnInit {
 
     listadoLibros: Libro[] = [];
 
-    constructor() {
-        console.log('Hola soy el constructor')
+    librosComprados: Libro[] = [];
+
+    precioTotal: number = 0;
+
+    constructor(private libroService: LibroService) {
     }
 
     ngOnInit(): void {
 
-        let libro1: Libro = { titulo: 'Cien años de soledad', autor: 'Gabriel Garcia Marquez', precio: 7, cantidadPaginas: 478 };
-        let libro2: Libro = { titulo: 'El relato de un naufrago', autor: 'Gabriel Garcia Marquez', precio: 3, cantidadPaginas: 180 };
-        let libro3: Libro = { titulo: 'Crónicas de una muerte anunciada', autor: 'Gabriel Garcia Marquez', precio: 5, cantidadPaginas: 370 };
-        let libro4: Libro = { titulo: 'El lazarillo de tormes', precio: 22, cantidadPaginas: 100 };
 
-        this.libroPrincipal = libro1;
 
-        this.listadoLibros = [libro1,libro2,libro3,libro4];
+        /* console.log('PRE PEDIDA DE API')
+         this.recuperarLibros().then(librosDevueltos => {
+             console.log('Libros devueltos por la promesa')
+             console.log(librosDevueltos)
+         });
+         console.log('POST PEDIDA DE API')*/
 
-       
+        this.libroService.recuperarLibrosOBS().subscribe(librosDevueltos => {
+            console.log('libros obtenidos');
+            console.log(librosDevueltos);
+            this.listadoLibros = librosDevueltos;
+        })
+
+
+
+
+
 
     }
+
+
+
+
+
+   /* recuperarLibros(): Promise<Libro[]> {
+        console.log('Inicio metodo recuperarLibros')
+        const promesaLibros = new Promise<Libro[]>((resolve, reject) => {
+            setTimeout(() => {
+
+                resolve(this.listadoLibros);
+
+            }, 3000)
+        });
+
+        return promesaLibros;
+
+    }*/
+
+
+
 
 
     cambiarModo(modoDeseado: string): void {
         this.modoElegido = modoDeseado;
     }
+
+    gestionaCompra(miLibroComprado: Libro) {
+        this.librosComprados.push(miLibroComprado);
+        this.precioTotal += miLibroComprado.precio;
+    }
+
+    actualizaStock(libroParaActualizar: Libro, cantidad: number) {
+        libroParaActualizar.stock += cantidad;
+    }
+
+
+
+
+
+
+
 
 
 

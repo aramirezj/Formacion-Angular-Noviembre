@@ -4,25 +4,13 @@
 <p>Modo actual: {{modoElegido}}</p>
 
 <div *ngIf="modoElegido === 'Comprar' ">
-    <p>Carrito: 0 unidades</p>
-    <p>Precio total: 0€</p>
+    <p>Carrito: {{librosComprados.length}} unidades</p>
+    <p>Precio total: {{precioTotal}}€</p>
 </div>
 
-<mat-card *ngFor="let libro of listadoLibros">
-    <mat-card-header>
-        <mat-card-title>Título: {{libro.titulo | uppercase}}</mat-card-title>
-        <mat-card-subtitle *ngIf="libro.autor;else saludo">Autor: {{libro.autor}}</mat-card-subtitle>
-     
-        <mat-card-subtitle [ngStyle]="{color: libro.precio < 10 ? 'green' : 'red'}">Precio: {{libro.precio}} €</mat-card-subtitle>
-        <mat-card-subtitle>Cantidad Pag.: {{libro.cantidadPaginas}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions>
-        <button mat-raised-button color="primary">Comprar</button>
-        <button mat-raised-button color="accent">Añadir</button>
-        <button mat-raised-button color="warn">Restar</button>
-    </mat-card-actions>
-</mat-card>
-
-<ng-template #saludo>
-    <mat-card-subtitle>Autor : Anonimo</mat-card-subtitle>
-</ng-template>
+<app-libro *ngFor="let libroIterado of listadoLibros" 
+[libro]="libroIterado" [configuracionExpositor]="modoElegido"
+ (comprado)="gestionaCompra($event)"
+(sumar)="actualizaStock(libroIterado, 1)"
+(restar)="actualizaStock(libroIterado, -1)" 
+></app-libro>

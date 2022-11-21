@@ -14,6 +14,11 @@
         <mat-error *ngIf="formularioCreacion.get('precio').hasError('required')">El campo es obligatorio</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
+        <mat-label>Stock:</mat-label>
+        <input formControlName="stock" matInput>
+        <mat-error *ngIf="formularioCreacion.get('stock').hasError('required')">El campo es obligatorio</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
         <mat-label>Cantidad de páginas:</mat-label>
         <input formControlName="cantidadPaginas" matInput>
         <mat-error *ngIf="formularioCreacion.get('cantidadPaginas').hasError('required')">El campo es obligatorio</mat-error>

@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Título: {{libro.titulo | uppercase}}</mat-card-title>
+        <mat-card-subtitle *ngIf="libro.autor;else saludo">Autor: {{libro.autor}}</mat-card-subtitle>
+
+        <mat-card-subtitle [ngStyle]="{color: libro.precio < 10 ? 'green' : 'red'}">Precio: {{libro.precio}} €
+        </mat-card-subtitle>
+        <mat-card-subtitle>Cantidad Pag.: {{libro.cantidadPaginas}}</mat-card-subtitle>
+        <mat-card-subtitle>Stock: {{libro.stock}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+        <ng-container *ngIf="configuracionExpositor === 'Comprar'">
+            <button mat-raised-button color="primary" (click)="comprar()">Comprar</button>
+        </ng-container>
+       
+        <ng-container *ngIf="configuracionExpositor === 'Consultar'">
+            <button mat-raised-button color="accent" (click)="sumarLibro()">Añadir</button>
+            <button mat-raised-button color="warn" (click)="restarLibro()">Restar</button>
+        </ng-container>
+
+    </mat-card-actions>
+</mat-card>
+
+<ng-template #saludo>
+    <mat-card-subtitle>Autor : Anonimo</mat-card-subtitle>
+</ng-template>

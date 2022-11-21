@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { LibroService } from '../services/libro.service';
 
 @Component({
     selector: 'app-login',
@@ -15,8 +16,12 @@ export class LoginComponent implements OnInit {
     formularioLogin: FormGroup;
 
 
-    constructor(private snackbar: MatSnackBar,private router: Router) { 
-
+    constructor(
+        private snackbar: MatSnackBar,
+        private router: Router,
+        private libroService: LibroService
+    ) {
+        console.log(this.libroService.miLibroFavorito);
     }
     ngOnInit(): void {
         this.formularioLogin = new FormGroup({

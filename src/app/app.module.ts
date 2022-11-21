@@ -17,13 +17,16 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { LibroComponent } from './libro/libro.component';
+import { LibroService } from './services/libro.service';
 
 @NgModule({
     declarations: [
         AppComponent,
         ExpositorComponent,
         LoginComponent,
-        CrearLibroComponent
+        CrearLibroComponent,
+        LibroComponent
     ],
     imports: [
         BrowserModule,
@@ -40,7 +43,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         MatInputModule,
         MatFormFieldModule
     ],
-    providers: [AuthGuard],
+    providers: [AuthGuard, LibroService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

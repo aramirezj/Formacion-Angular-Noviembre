@@ -3,4 +3,5 @@ export interface Libro {
     cantidadPaginas: number,
     autor?: string,
     precio: number
+    stock:number;
 }

@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Nombre: {{autor.nombre | uppercase}}</mat-card-title>
+        <mat-card-subtitle>Libros publicados.: {{autor.librosPublicados}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+        <ng-container *ngIf="configuracionExpositor === 'Comprar'">
+        </ng-container>
+       
+        <ng-container *ngIf="configuracionExpositor === 'Consultar'">
+            <button mat-raised-button color="warn" (click)="borrarAutor()">Borrar</button>
+        </ng-container>
+
+    </mat-card-actions>
+</mat-card>

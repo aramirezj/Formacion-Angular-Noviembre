@@ -13,27 +13,30 @@ export class LibroComponent implements OnInit {
 
     @Output() comprado: EventEmitter<Libro> = new EventEmitter();
 
-    @Output() sumar: EventEmitter<void> = 
-    new EventEmitter();
-    @Output() restar: EventEmitter<void> = 
-    new EventEmitter();
+    @Output() sumar: EventEmitter<void> = new EventEmitter();
+    @Output() restar: EventEmitter<void> = new EventEmitter();
+    @Output() borrado: EventEmitter<void> = new EventEmitter();
     constructor() { }
 
-    
-    sumarLibro(){
+
+    sumarLibro() {
         this.sumar.emit();
     }
 
-    restarLibro(){
+    restarLibro() {
         this.restar.emit();
     }
 
     ngOnInit(): void {
-      
+
     }
 
     comprar() {
         this.comprado.emit(this.libro);
+    }
+
+    borrarLibro() {
+        this.borrado.emit();
     }
 
 

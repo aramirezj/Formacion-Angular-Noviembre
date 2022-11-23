@@ -19,6 +19,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LibroComponent } from './libro/libro.component';
 import { LibroService } from './services/libro.service';
+import { CrearAutorComponent } from './crear-autor/crear-autor.component';
+import { ExpositorAutorComponent } from './expositor-autor/expositor-autor.component';
+import { AutorComponent } from './autor/autor.component';
+import { AutorService } from './services/autor.service';
 
 @NgModule({
     declarations: [
@@ -26,7 +30,10 @@ import { LibroService } from './services/libro.service';
         ExpositorComponent,
         LoginComponent,
         CrearLibroComponent,
-        LibroComponent
+        LibroComponent,
+        CrearAutorComponent,
+        ExpositorAutorComponent,
+        AutorComponent
     ],
     imports: [
         BrowserModule,
@@ -43,7 +50,7 @@ import { LibroService } from './services/libro.service';
         MatInputModule,
         MatFormFieldModule
     ],
-    providers: [AuthGuard, LibroService],
+    providers: [AuthGuard, LibroService, AutorService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

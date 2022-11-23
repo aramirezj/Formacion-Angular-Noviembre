@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Libro } from '../interfaces/Libro';
 import { LibroService } from '../services/libro.service';
@@ -21,7 +22,8 @@ export class ExpositorComponent implements OnInit {
 
     precioTotal: number = 0;
 
-    constructor(private libroService: LibroService) {
+    constructor(private libroService: LibroService,
+         private matSnackbar: MatSnackBar) {
     }
 
     ngOnInit(): void {
@@ -52,19 +54,19 @@ export class ExpositorComponent implements OnInit {
 
 
 
-   /* recuperarLibros(): Promise<Libro[]> {
-        console.log('Inicio metodo recuperarLibros')
-        const promesaLibros = new Promise<Libro[]>((resolve, reject) => {
-            setTimeout(() => {
-
-                resolve(this.listadoLibros);
-
-            }, 3000)
-        });
-
-        return promesaLibros;
-
-    }*/
+    /* recuperarLibros(): Promise<Libro[]> {
+         console.log('Inicio metodo recuperarLibros')
+         const promesaLibros = new Promise<Libro[]>((resolve, reject) => {
+             setTimeout(() => {
+ 
+                 resolve(this.listadoLibros);
+ 
+             }, 3000)
+         });
+ 
+         return promesaLibros;
+ 
+     }*/
 
 
 
@@ -81,6 +83,13 @@ export class ExpositorComponent implements OnInit {
 
     actualizaStock(libroParaActualizar: Libro, cantidad: number) {
         libroParaActualizar.stock += cantidad;
+    }
+
+
+    borrarLibro(libroABorrar: Libro) {
+        this.libroService.borrarLibroOBS(libroABorrar).subscribe(() => {
+            this.matSnackbar.open('Libro borrado', 'Cerrar');
+        });
     }
 
 

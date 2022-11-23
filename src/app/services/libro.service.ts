@@ -11,7 +11,16 @@ export class LibroService {
         let libro2: Libro = { titulo: 'El relato de un naufrago', stock: 4, autor: 'Gabriel Garcia Marquez', precio: 3, cantidadPaginas: 180 };
         let libro3: Libro = { titulo: 'Crónicas de una muerte anunciada', stock: 3, autor: 'Gabriel Garcia Marquez', precio: 5, cantidadPaginas: 370 };
         let libro4: Libro = { titulo: 'El lazarillo de tormes', stock: 10, precio: 22, cantidadPaginas: 100 };
-        this.librosBBDD = [libro1, libro2, libro3, libro4];
+
+
+        const librosCookie: string = localStorage.getItem('libros');
+
+        if (librosCookie) {
+            this.librosBBDD = JSON.parse(librosCookie);
+        } else {
+            this.librosBBDD = [libro1, libro2, libro3, libro4];
+            this.actualizarCookie();
+        }
 
     }
 
@@ -26,14 +35,32 @@ export class LibroService {
         });
     }
 
-    crearLibroOBS(libro:Libro): Observable<Libro> {
+    crearLibroOBS(libro: Libro): Observable<Libro> {
         return new Observable(observer => {
             setTimeout(() => {
                 this.librosBBDD.push(libro);
+                this.actualizarCookie();
                 observer.next(libro);
                 observer.complete();
             }, 2000);
         });
+    }
+
+    borrarLibroOBS(libro: Libro): Observable<void> {
+        return new Observable(observer => {
+            setTimeout(() => {
+                const indiceABorrar: number = this.librosBBDD.findIndex(libroF => libroF.titulo === libro.titulo);
+                this.librosBBDD.splice(indiceABorrar, 1);
+                this.actualizarCookie();
+                observer.next();
+                observer.complete();
+            }, 2000);
+        })
+    }
+
+
+    actualizarCookie() {
+        localStorage.setItem('libros', JSON.stringify(this.librosBBDD));
     }
 
 

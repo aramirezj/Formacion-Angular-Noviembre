@@ -8,9 +8,13 @@
     <p>Precio total: {{precioTotal}}€</p>
 </div>
 
-<app-libro *ngFor="let libroIterado of listadoLibros" 
-[libro]="libroIterado" [configuracionExpositor]="modoElegido"
- (comprado)="gestionaCompra($event)"
-(sumar)="actualizaStock(libroIterado, 1)"
-(restar)="actualizaStock(libroIterado, -1)" 
-></app-libro>
+<app-libro *ngFor="let libroIterado of listadoLibros" [libro]="libroIterado" [configuracionExpositor]="modoElegido"
+    (comprado)="gestionaCompra($event)" (sumar)="actualizaStock(libroIterado, 1)"
+    (restar)="actualizaStock(libroIterado, -1)" (borrado)="borrarLibro(libroIterado)"></app-libro>
+
+<ng-container *ngIf="librosComprados.length > 0">
+    <h2>Carrito de la compra</h2>
+    <br>
+
+    <app-libro *ngFor="let libroIterado of librosComprados" [libro]="libroIterado"></app-libro>
+</ng-container>

@@ -1,0 +1,8 @@
+<button (click)="cambiarModo('Comprar') " mat-raised-button color="primary">Comprar</button>
+<button (click)="cambiarModo('Consultar') " mat-raised-button color="accent">Consultar</button>
+
+<p>Modo actual: {{modoElegido}}</p>
+
+
+<app-autor *ngFor="let autorIterado of listadoAutores" [autor]="autorIterado" [configuracionExpositor]="modoElegido"
+    (borrado)="borrarAutor(autorIterado)"></app-autor>

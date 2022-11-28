@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Libro } from '../interfaces/Libro';
-import { LibroService } from '../services/libro.service';
+import { Libro } from '../../../interfaces/Libro';
+import { LibroService } from '../../../services/libro.service';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
     selector: 'app-crear-libro',
@@ -13,10 +14,10 @@ export class CrearLibroComponent implements OnInit {
     formularioCreacion: FormGroup;
     constructor(
         private snackbar: MatSnackBar,
-        private libroService: LibroService
+        private libroService: LibroService,
+        private sharedService:SharedService
     ) {
-        console.log(this.libroService.miLibroFavorito);
-        this.libroService.miLibroFavorito = 'El perfume';
+        this.sharedService.tituloWeb.next('Creación de libro');
     }
 
     ngOnInit(): void {

@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
-    <span>Mi libreria</span>
+    <span>{{title}}</span>
     <span class="example-spacer"></span>
 </mat-toolbar>
 
@@ -11,11 +11,11 @@
 <!-- Contenido de la web -->
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
-        <div class="elementoBarra" [routerLink]="['login']"> Inicio de sesión</div>
-        <div class="elementoBarra" [routerLink]="['expositor']"> Expositor de libros</div>
-        <div class="elementoBarra" [routerLink]="['creacionLibro']"> Creación de libros</div>
-        <div class="elementoBarra" [routerLink]="['expositorAutor']"> Expositor de autores</div>
-        <div class="elementoBarra" [routerLink]="['creacionAutor']"> Creación de autores</div>
+        <div class="elementoBarra" [routerLink]="['usuario/login']"> Inicio de sesión</div>
+        <div class="elementoBarra" [routerLink]="['libro/expositor']"> Expositor de libros</div>
+        <div class="elementoBarra" [routerLink]="['libro/creacionLibro']"> Creación de libros</div>
+        <div class="elementoBarra" [routerLink]="['autor/expositorAutor']"> Expositor de autores</div>
+        <div class="elementoBarra" [routerLink]="['autor/creacionAutor']"> Creación de autores</div>
     </mat-drawer>
 
     <div class="example-sidenav-content">

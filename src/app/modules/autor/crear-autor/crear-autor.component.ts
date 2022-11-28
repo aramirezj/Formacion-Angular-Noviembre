@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Autor } from '../interfaces/Autor';
-import { Libro } from '../interfaces/Libro';
-import { AutorService } from '../services/autor.service';
-import { LibroService } from '../services/libro.service';
+import { Autor } from '../../../interfaces/Autor';
+import { Libro } from '../../../interfaces/Libro';
+import { AutorService } from '../../../services/autor.service';
+import { LibroService } from '../../../services/libro.service';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-crear-autor',
@@ -15,8 +16,10 @@ export class CrearAutorComponent implements OnInit {
     formularioCreacion: FormGroup;
     constructor(
         private snackbar: MatSnackBar,
-        private autorService: AutorService
+        private autorService: AutorService,
+        private sharedService:SharedService
     ) {
+        this.sharedService.tituloWeb.next('Creación de autores');
     }
 
     ngOnInit(): void {

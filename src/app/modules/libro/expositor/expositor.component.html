@@ -2,7 +2,8 @@
 <button (click)="cambiarModo('Consultar') " mat-raised-button color="accent">Consultar</button>
 
 <p>Modo actual: {{modoElegido}}</p>
-
+<app-tabla-generica [modelos]="modeloLibro" [columnas]="columnasLibro"
+ [datos]="listadoLibros"></app-tabla-generica>
 <div *ngIf="modoElegido === 'Comprar' ">
     <p>Carrito: {{librosComprados.length}} unidades</p>
     <p>Precio total: {{precioTotal}}€</p>

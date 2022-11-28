@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
-import { Libro } from '../interfaces/Libro';
-import { LibroService } from '../services/libro.service';
+import { Libro } from '../../../interfaces/Libro';
+import { LibroService } from '../../../services/libro.service';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
     selector: 'app-expositor',
@@ -22,8 +23,14 @@ export class ExpositorComponent implements OnInit {
 
     precioTotal: number = 0;
 
+
+    modeloLibro: string[] = ['titulo', 'cantidadPaginas', 'autor', 'precio', 'stock'];
+    columnasLibro: string[] = ['Título', 'C.Paginas', 'Autor', 'Precio', 'Stock'];
+
     constructor(private libroService: LibroService,
-         private matSnackbar: MatSnackBar) {
+        private matSnackbar: MatSnackBar,
+        private sharedService: SharedService) {
+        this.sharedService.tituloWeb.next('Expositor de libros');
     }
 
     ngOnInit(): void {

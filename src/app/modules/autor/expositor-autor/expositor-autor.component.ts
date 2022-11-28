@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Autor } from '../interfaces/Autor';
-import { AutorService } from '../services/autor.service';
+import { Autor } from '../../../interfaces/Autor';
+import { AutorService } from '../../../services/autor.service';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
     selector: 'app-expositor-autor',
@@ -15,8 +16,11 @@ export class ExpositorAutorComponent implements OnInit {
     listadoAutores: Autor[] = [];
     constructor(
         private autorService: AutorService,
-        private matSnackbar: MatSnackBar
-    ) { }
+        private matSnackbar: MatSnackBar,
+        private sharedService:SharedService
+    ) {
+        this.sharedService.tituloWeb.next('Expositor de autores');
+     }
 
     ngOnInit(): void {
         this.autorService.recuperarAutoresOBS().subscribe(autoresDevueltos => {

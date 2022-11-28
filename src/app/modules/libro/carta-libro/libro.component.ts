@@ -1,6 +1,6 @@
 import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Libro } from '../interfaces/Libro';
+import { Libro } from '../../../interfaces/Libro';
 
 @Component({
     selector: 'app-libro',

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { LibroService } from '../services/libro.service';
+import { LibroService } from '../../../services/libro.service';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
     selector: 'app-login',
@@ -19,9 +20,10 @@ export class LoginComponent implements OnInit {
     constructor(
         private snackbar: MatSnackBar,
         private router: Router,
-        private libroService: LibroService
+        private sharedService:SharedService
     ) {
-        console.log(this.libroService.miLibroFavorito);
+        this.sharedService.tituloWeb
+        .next('Inicio de sesión');
     }
     ngOnInit(): void {
         this.formularioLogin = new FormGroup({

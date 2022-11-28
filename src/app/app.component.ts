@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LibroService } from './services/libro.service';
+import { SharedService } from './services/shared.service';
 
 @Component({
     selector: 'app-root',
@@ -7,12 +8,14 @@ import { LibroService } from './services/libro.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'libreria';
+    title: string;
+    constructor(private sharedService: SharedService) {
+        this.sharedService.tituloWeb
+            .subscribe(nuevoTitulo => {
+                console.log(nuevoTitulo);
+                this.title = nuevoTitulo;
+            });
 
-
-    constructor(private libroService: LibroService) {
-        console.log(this.libroService.miLibroFavorito);
-        this.libroService.miLibroFavorito = 'Cien años de soledad';
     }
 
 }

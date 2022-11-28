@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
             return true;
         } else {
             this.snackbar.open('Debe iniciar sesión antes', 'Cerrar');
-            this.router.navigate(['login']);
+            this.router.navigate(['usuario/login']);
         }
         return sessionStorage.getItem('token') !== null;
     }

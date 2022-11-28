@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Autor } from '../interfaces/Autor';
+import { Autor } from '../../../interfaces/Autor';
 
 @Component({
     selector: 'app-autor',

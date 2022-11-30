@@ -5,11 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './guards/auth.guard';
-import { CrearAutorComponent } from './modules/autor/crear-autor/crear-autor.component';
-import { ExpositorAutorComponent } from './modules/autor/expositor-autor/expositor-autor.component';
-import { AutorComponent } from './modules/autor/carta-autor/autor.component';
-import { AutorService } from './services/autor.service';
 import { SharedModule } from './modules/shared/shared.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
     declarations: [
@@ -19,7 +16,8 @@ import { SharedModule } from './modules/shared/shared.module';
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        SharedModule
+        SharedModule,
+        NgxSpinnerModule
     ],
     providers: [AuthGuard],
     bootstrap: [AppComponent]

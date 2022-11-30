@@ -10,6 +10,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { PuntosPipe } from './pipes/puntos.pipe';
+import { PocoStockPipe } from './pipes/poco-stock.pipe';
+import { StockCriticoDirective } from './directives/stock-critico.directive';
 
 const materialModules = [
     MatButtonModule,
@@ -24,7 +27,10 @@ const materialModules = [
 
 @NgModule({
     declarations: [
-        TablaGenericaComponent
+        TablaGenericaComponent,
+        PuntosPipe,
+        PocoStockPipe,
+        StockCriticoDirective
     ],
     imports: [
         CommonModule,
@@ -34,6 +40,9 @@ const materialModules = [
     ],
     exports: [
         TablaGenericaComponent,
+        PuntosPipe,
+        PocoStockPipe,
+        StockCriticoDirective,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,

@@ -3,6 +3,7 @@
         <mat-label>Titulo:</mat-label>
         <input formControlName="titulo" matInput>
         <mat-error *ngIf="formularioCreacion.get('titulo').hasError('required')">El campo es obligatorio</mat-error>
+        <mat-error *ngIf="formularioCreacion.get('titulo').hasError('fanGatos')">No escribas perro</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Autor:</mat-label>
@@ -12,6 +13,7 @@
         <mat-label>Precio:</mat-label>
         <input formControlName="precio" matInput>
         <mat-error *ngIf="formularioCreacion.get('precio').hasError('required')">El campo es obligatorio</mat-error>
+        <mat-error *ngIf="formularioCreacion.get('precio').hasError('rangoNumero')">El precio debe estar entre 5€ y 10€</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Stock:</mat-label>

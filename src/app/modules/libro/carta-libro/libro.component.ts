@@ -1,11 +1,12 @@
-import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AutorService } from 'src/app/services/autor.service';
 import { Libro } from '../../../interfaces/Libro';
 
 @Component({
     selector: 'app-libro',
     templateUrl: './libro.component.html',
-    styleUrls: ['./libro.component.scss']
+    styleUrls: ['./libro.component.scss'],
+    providers:[AutorService]
 })
 export class LibroComponent implements OnInit {
     @Input() libro: Libro;
@@ -16,7 +17,15 @@ export class LibroComponent implements OnInit {
     @Output() sumar: EventEmitter<void> = new EventEmitter();
     @Output() restar: EventEmitter<void> = new EventEmitter();
     @Output() borrado: EventEmitter<void> = new EventEmitter();
-    constructor() { }
+    constructor(
+        private autorService:AutorService
+    ) { 
+        this.autorService.recuperarAutoresOBS().subscribe(autores => console.log(autores));
+    }
+
+    ngOnChanges(){
+
+    }
 
 
     sumarLibro() {
